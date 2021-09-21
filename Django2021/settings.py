@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'myapp.apps.MyappConfig',
+    'movies.apps.MoviesConfig',
 ]
 
 MIDDLEWARE = [
@@ -74,14 +75,23 @@ WSGI_APPLICATION = 'Django2021.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'django',  # BASE_DIR / 'SQL3_DJ',
+#         "USER": "postgres",
+#         "PASSWORD": "123321",
+#
+#     }
+# }
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'django',
-        "USER": "postgres",
-        "PASSWORD": "123321",
-        "HOST": "localhost",
-        "PORT": "5432"
+        'NAME': 'django',  # 'rent_car',
+        'USER': 'postgres',
+        'PASSWORD': '123321era',
+        'HOST': 'localhost',
     }
 }
 
