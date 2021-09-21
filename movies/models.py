@@ -128,7 +128,7 @@ class Movie(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return reverse('movie', kwargs={'slug': self.url})
+        return reverse('home', kwargs={'slug': self.url})
 
 
 class MovieShort(models.Model):
