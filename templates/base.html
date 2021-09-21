@@ -3,7 +3,9 @@
 <html lang="ru">
 <head>
     <!-- //Meta tag Keywords -->
-    <title>Clack Website Template</title>
+    <title>{% block title %}
+
+    {% endblock %}</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- //Meta tag Keywords -->
@@ -24,22 +26,12 @@
 </head>
 <body>
 <div id="page" class="page">
-    <!-- mian-content -->
-    <div class="main-banner bg bg1" id="home"
-         style="background-color: rgba(0, 0, 0, 0); margin-top: 0px; background-image: url(&quot;bundles/single-post-pic.jpg&quot;);">
-        {% block header %}
+    {% include 'include/movie_header.html' %}
+    {% block content %}
 
-        {% endblock %}
-        {% block banner %}
-
-        {% endblock %}
-        {% block content %}
-
-        {% endblock %}
-        {% block footer %}
-
-        {% endblock %}
-    </div>
+    {% endblock content %}
+    {% include 'include/movie_footer.html' %}
 </div>
+
 </body>
 </html>
