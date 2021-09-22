@@ -6,6 +6,7 @@ from movies.models import Actor, Category, RatingStar, Rating, Reviews, Movie, M
 admin.site.site_title = 'Erlan Abdraimov'
 admin.site.site_header = 'Erlan Abdraimov'
 
+
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ('id', 'name', 'url',)
