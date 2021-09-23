@@ -1,7 +1,18 @@
+from ckeditor.widgets import CKEditorWidget
+from django import forms
 from django.contrib import admin
 from django.utils.safestring import mark_safe
 
 from movies.models import Actor, Category, RatingStar, Rating, Reviews, Movie, MovieShort, Genre
+
+
+class MovieAdminForm(forms.ModelForm):
+    description = forms.CharField(label='Описания', widget=CKEditorWidget())
+
+    class Meta:
+        model = Movie
+        fields = '__all__'
+
 
 admin.site.site_title = 'Erlan Abdraimov'
 admin.site.site_header = 'Erlan Abdraimov'
@@ -26,6 +37,7 @@ class MovieAdmin(admin.ModelAdmin):
     def image(self, obj):
         return mark_safe(f'<img src={obj.poster.url} width="50" height="50" style="border-radius: 50px;">')
 
+    form = MovieAdminForm
     image.short_description = 'poster'
     list_display = ('id', 'image', 'title', 'category', 'country', 'url', 'is_publish')
     list_display_links = ('id', 'image', 'title')
@@ -35,6 +47,7 @@ class MovieAdmin(admin.ModelAdmin):
     inlines = [ReviewInline]
     save_on_top = True
     save_as = True
+    prepopulated_fields = {'url': ('title',)}
 
 
 @admin.register(Reviews)
@@ -53,8 +66,9 @@ class ActorAdmin(admin.ModelAdmin):
 
     list_display_links = ('id', 'name', 'age', 'get_image')
     list_display = ('id', 'name', 'age', 'get_image')
-    fields = ('name', 'age', 'description', 'image',)
+    fields = ('name', 'age', 'description', 'image', 'slug',)
     readonly_fields = ('get_image',)
+    prepopulated_fields = {'slug': ('name',)}
 
 
 @admin.register(Rating)

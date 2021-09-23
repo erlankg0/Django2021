@@ -42,6 +42,7 @@ class Actor(models.Model):
     age = models.PositiveSmallIntegerField('Возвраст', default=0)
     description = models.TextField('Описание')
     image = models.ImageField(upload_to='actors/', verbose_name='Изображения')
+    slug = models.SlugField(verbose_name='URL')
 
     class Meta:
         ordering = ['name']
@@ -53,6 +54,9 @@ class Actor(models.Model):
 
     def __repr__(self):
         return self.name
+
+    def get_absolute_url(self):
+        return reverse('actor', kwargs={'slug': self.slug})
 
 
 class Genre(models.Model):

@@ -18,10 +18,22 @@
                     <li style="list-style: none"><span><b>Слоган:</b> «{{ movie.slogan }}»</span>
                     </li>
                     <li style="list-style: none">
-                        <span><b>Режиссер:</b> {{ movie.actors.name }}</span></li>
-                    <li style="list-style: none"><span><b>Актеры:</b>{{ movie.actors.name }}
-                    </span></li>
-                    <li style="list-style: none"><span><b>Жанр:</b> {{ movie.genre.name }}</span>
+                        <span><b>Режиссер:</b>
+                            {% for directors in movie.directors.all %}
+                                {{ directors.name }}
+                            {% endfor %}</span>
+                    </li>
+                    <li style="list-style: none"><span><b>Актеры:</b>
+                        {% for actor in movie.actors.all %}
+                            <a href="{{ actor.get_absolute_url }}">{{ actor.name }}, </a>
+                        {% endfor %}
+                    </span>
+                    </li>
+                    <li><span><b>Жанр:</b>
+                        {% for genre in movie.genre.all %}
+                            {{ genre.name }};
+                        {% endfor %}
+                    </span>
                     </li>
                     <li style="list-style: none"><span><b>Премьера в мире:</b> {{ movie.world_premier }}</span>
                     </li>
@@ -155,7 +167,7 @@
                          style="outline: none; cursor: inherit;">
                     <div class="media-body mt-4">
                         <h5 class="mt-0 editContent"
-                            style="outline: none; cursor: inherit;">{{ review.name}}</h5>
+                            style="outline: none; cursor: inherit;">{{ review.name }}</h5>
                         <p class="mt-2 editContent" style="outline: none; cursor: inherit;">
                             {{ review.text }}
                         </p>
